@@ -2,8 +2,8 @@
 
 ## Author
 
-<!-- Insert Your Name Here -->
+drum-computer
 
 ## Description
 
-<!-- Describe your example here -->
+Synth that I've build during the synth design workshop in Berlin
