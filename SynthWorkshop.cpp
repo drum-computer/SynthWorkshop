@@ -85,10 +85,10 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         if(tick.Process())
         {
             int freq = rand() % 5;
-            osc.SetFreq(notes[freq]);
-            osc2.SetFreq(notes[freq] + 110.0);
-            osc3.SetFreq(notes[freq] - 110.0);
-            osc4.SetFreq(notes[freq] + 220.0);
+            osc.SetFreq(notes[freq] + io_vals.osc_freq);
+            osc2.SetFreq(notes[freq] + 110.0 + io_vals.osc_freq);
+            osc3.SetFreq(notes[freq] - 110.0 + io_vals.osc_freq);
+            osc4.SetFreq(notes[freq] + 220.0 + io_vals.osc_freq);
             env.Trigger();
         }
 
@@ -122,8 +122,8 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         filter_out = filter.Process(sig_out);
 
         // MAIN OUT
-        out[LEFT]  = filter_out;
-        out[RIGHT] = filter_out;
+        out[LEFT]  = filter_out * io_vals.main_volume;
+        out[RIGHT] = filter_out * io_vals.main_volume;
     }
 }
 
